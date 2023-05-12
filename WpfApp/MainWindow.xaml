@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="850" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
@@ -31,6 +32,8 @@
         <Button x:Name="buttonGenerate" Content="Genera codice" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="172" Grid.Column="3" Height="27" />
 
 
-
+        <DockPanel Grid.Row="4" Grid.ColumnSpan="5">
+            <wv2:WebView2 Name="webView" Source="https://localhost:7205/" />
+        </DockPanel>
     </Grid>
 </Window>
