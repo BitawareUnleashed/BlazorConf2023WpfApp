@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1774.30" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EventAggregator\EventAggregator.csproj" />
+  </ItemGroup>
+
 </Project>

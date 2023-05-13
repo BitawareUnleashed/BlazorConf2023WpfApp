@@ -33,7 +33,7 @@
 
 
         <DockPanel Grid.Row="4" Grid.ColumnSpan="5">
-            <wv2:WebView2 Name="webView" Source="https://localhost:7205/" />
+            <wv2:WebView2 Name="webView" Source="https://localhost:7205/details" />
         </DockPanel>
     </Grid>
 </Window>
