@@ -6,34 +6,81 @@
         xmlns:local="clr-namespace:WpfApp"
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
-            <RowDefinition Height="16"/>
-            <RowDefinition Height="28"/>
-            <RowDefinition Height="49"/>
-            <RowDefinition Height="224*"/>
-        </Grid.RowDefinitions>
+        Title="MainWindow" Height="500" Width="500">
+    <Window.Resources>
+        <XmlDataProvider x:Key="ComPorts" Source="CommsData.xml" XPath="/Comms/Ports" />
+        <XmlDataProvider x:Key="ComSpeed" Source="CommsData.xml" XPath="/Comms/Baud" />
+    </Window.Resources>
+    <Grid >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="9"/>
-            <ColumnDefinition Width="175"/>
-            <ColumnDefinition Width="25"/>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition Width="338*"/>
+            <ColumnDefinition Width="109*" />
+            <ColumnDefinition Width="145*" />
+            <ColumnDefinition Width="98*"/>
+            <ColumnDefinition Width="149*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="textBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="1,0,0,0" Text="Hello, world!" VerticalAlignment="Center" Grid.ColumnSpan="4" Height="100" Width="1449" FontSize="80" FontWeight="Bold" FontFamily="Arial"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="13" />
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="279*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" TextAlignment="Center" Text="Comm Port" Height="NaN" Width="NaN" Margin="0,0,4,0" />
+        <ComboBox Grid.Column="1" Grid.Row="0" Name="Comm_Port_Names" MinWidth="130" ItemsSource="{Binding Source={StaticResource ComPorts}}" Margin="5,0,5,0" />
+        <Button Grid.Column="2" Grid.Row="0" Content="Connect" Click="Connect_Comms" Name="Connect_btn" Margin="5,0,5,0" />
 
-        <TextBlock x:Name="textBlock1" Grid.Column="1" Text="Codice" Grid.Row="1"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="174" Height="23" Grid.Row="2" Grid.Column="1"/>
-        <Button x:Name="button" Content="Invia" HorizontalAlignment="Center"  Grid.Row="3" VerticalAlignment="Top" Width="172" Grid.Column="1" Height="27"/>
+        <TextBlock Grid.Row="1" TextAlignment="Center" Text="Baud Rate" Height="NaN" Width="NaN" Margin="0,0,4,0" />
+        <ComboBox Grid.Column="1" Grid.Row="1" Name="Baud_Rates" Text="Select..." ItemsSource="{Binding Source={StaticResource ComSpeed}}" Margin="5,0,5,0" />
+
+        <TextBlock Text="Send" Grid.Column="0" Grid.Row="2" TextAlignment="Center" Height="NaN" Width="NaN" Margin="0,0,4,0"/>
+        <TextBox Name ="SerialData" Grid.Column="1" Grid.Row="2" TextAlignment="Center"  Margin="5,0,5,0"/>
+        <Button x:Name="Sender" Grid.Column="2" Grid.Row="2"  Content="Send"  Click="Send_Click" Margin="5,0,5,0" />
+
+        <TextBlock Grid.Column="0" Grid.Row="5" Text="Recieved Data" TextAlignment="Center" Height="NaN" Margin="0,10,4,0" Width="NaN"/>
+        <RichTextBox Grid.Column="1" Grid.Row="5" Name="Commdata" Grid.ColumnSpan="3" Height="NaN" Margin="0,10,0,0" Width="NaN"/>
+        <Grid Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="65" Grid.Row="4" VerticalAlignment="Top" Width="400" Margin="0,1,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="32*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Send1"  Click="Send_Click" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="32" Margin="0,1,0,0"/>
+            <Button x:Name="Send2"  Click="Send_Click" Content="2" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="1"/>
+            <Button x:Name="Send3"  Click="Send_Click" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="2" Margin="0,1,0,0"/>
+            <Button x:Name="Send4"  Click="Send_Click" Content="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="3" Margin="0,1,0,0"/>
+            <Button x:Name="Send5"  Click="Send_Click" Content="5" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="4"/>
+            <Button x:Name="Send6"  Click="Send_Click" Content="6" HorizontalAlignment="Left" Margin="44,1,0,0" VerticalAlignment="Top" Width="44" Height="32" Grid.ColumnSpan="2" Grid.Column="4"/>
+            <Button x:Name="Send7"  Click="Send_Click" Content="7" HorizontalAlignment="Left" Margin="1,1,0,0" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="6"/>
+            <Button x:Name="Send8"  Click="Send_Click" Content="8" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="7"/>
+            <Button x:Name="Send9"  Click="Send_Click" Content="9" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="8" Margin="0,1,0,0"/>
+            <Button x:Name="Send10"  Click="Send_Click" Content="A" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="32" Margin="1,0,0,0" Grid.ColumnSpan="2" Grid.Row="1"/>
+            <Button x:Name="Send11"  Click="Send_Click" Content="B" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
+            <Button x:Name="Send12"  Click="Send_Click" Content="C" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="2" Margin="1,0,0,0" Grid.Row="1"/>
+            <Button x:Name="Send13"  Click="Send_Click" Content="D" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="3" Margin="1,0,0,0" Grid.ColumnSpan="2" Grid.Row="1"/>
+            <Button x:Name="Send14"  Click="Send_Click" Content="E" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="4" Grid.Row="1"/>
+            <Button x:Name="Send15"  Click="Send_Click" Content="F" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="5" Grid.Row="1"/>
+            <Button x:Name="Send16"  Click="Send_Click" Content="10" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="1"/>
+            <Button x:Name="Send16b"  Click="Send_Click" Content="11" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="1"/>
+            <Button x:Name="Send18"  Click="Send_Click" Content="12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="44" Height="32" Grid.Column="8" Margin="1,0,0,0" Grid.Row="1"/>
+        </Grid>
 
 
-        <Button x:Name="buttonGenerate" Content="Genera codice" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="172" Grid.Column="3" Height="27" />
+        <Grid Visibility="Hidden" Height="NaN" Width="NaN" Margin="0,0,4,0">
 
-
-        <DockPanel Grid.Row="4" Grid.ColumnSpan="5">
-            <wv2:WebView2 Name="webView" Source="https://localhost:7205/details" />
-        </DockPanel>
+            <DockPanel Grid.Row="4" Grid.ColumnSpan="5">
+                <wv2:WebView2 Name="webView" Source="https://localhost:7205/details" />
+            </DockPanel>
+        </Grid>
     </Grid>
 </Window>
