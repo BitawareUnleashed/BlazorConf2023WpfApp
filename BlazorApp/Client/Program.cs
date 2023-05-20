@@ -1,4 +1,6 @@
 using BlazorApp.Client;
+using BlazorApp.Client.Models;
+using BlazorApp.Client.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -10,5 +12,7 @@ builder.Services.AddHttpClient("BlazorApp.ServerAPI", client => client.BaseAddre
 
 // Supply HttpClient instances that include access tokens when making requests to the server project
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BlazorApp.ServerAPI"));
+builder.Services.AddScoped<HubFactory>();
+builder.Services.AddScoped<SerialPortService>();
 
 await builder.Build().RunAsync();

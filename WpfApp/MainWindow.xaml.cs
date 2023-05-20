@@ -186,60 +186,60 @@ public partial class MainWindow : Window
         switch (buttonName)
         {
             case "Sender1":
-                toTrasmit = '\0';
-                break;
-            case "Sender2":
                 toTrasmit = (char)0x01;
                 break;
+            case "Sender2":
+                toTrasmit = (char)0x02;
+                break;
             case "Send3":
-                var t = ((char)0x02).ToString() + ((char)2).ToString() + ((char)4).ToString() + ((char)13).ToString() + ((char)1).ToString() + ';' + ((char)64).ToString() + '|';
-                SerialCmdSend(t);
+                toTrasmit = (char)0x03;
                 return;
             case "Send4":
-                var t1 = ((char)2).ToString() + ((char)2).ToString() + ((char)4).ToString() + ((char)13).ToString() + ((char)1).ToString() + ';' + ((char)2).ToString() + '|';
-                SerialCmdSend(t1);
+                toTrasmit = (char)0x04;
                 return;
             case "Sender5":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x05;
                 break;
             case "Sender6":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x06;
                 break;
             case "Sender7":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x07;
                 break;
             case "Sender8":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x08;
                 break;
             case "Sender9":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x09;
                 break;
             case "Sender10":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x0A;
                 break;
             case "Sender11":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x0B;
                 break;
             case "Sender12":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x0C;
                 break;
             case "Sender13":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x0D;
                 break;
             case "Sender14":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x0E;
                 break;
             case "Sender15":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x0F;
                 break;
             case "Sender16":
-                toTrasmit = '\0';
+                toTrasmit = (char)0x10;
                 break;
             case "Sender16b":
-                toTrasmit = '\0';
+                var t = ((char)0x02).ToString() + ((char)2).ToString() + ((char)4).ToString() + ((char)13).ToString() + ((char)1).ToString() + ';' + ((char)64).ToString() + '|';
+                SerialCmdSend(t);
                 break;
             case "Sender18":
-                toTrasmit = '\0';
+                var t1 = ((char)2).ToString() + ((char)2).ToString() + ((char)4).ToString() + ((char)13).ToString() + ((char)1).ToString() + ';' + ((char)2).ToString() + '|';
+                SerialCmdSend(t1);
                 break;
             default:
                 toTrasmit = '\0';
