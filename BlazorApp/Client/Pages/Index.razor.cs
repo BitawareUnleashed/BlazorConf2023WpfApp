@@ -1,22 +1,55 @@
 ﻿using BlazorApp.Client.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
+using MudBlazor;
 using System.Text;
 
 namespace BlazorApp.Client.Pages;
 
 public partial class Index
 {
+    private List<string> comList = new List<string>();
+    private List<string> baudList = new List<string>();
+
     private string sendBoxValue = string.Empty;
     private string buttonText = "Connect";
     private string sendText = "Send";
     private string logAreaNotifications = string.Empty;
     private string comName = "COM1";
-    private int baudRate = 2400;
+    private string baudRate = "2400";
+
+    private void OnComSelected(IEnumerable<string> com)
+    {
+        comName = com.FirstOrDefault();
+    }
+
+    private void OnBaudRateSelected(IEnumerable<string> baudRate)
+    {
+        this.baudRate =baudRate.FirstOrDefault();
+    }
 
 
     protected override Task OnInitializedAsync()
     {
+        comList.Add("COM1");
+        comList.Add("COM2");
+        comList.Add("COM3");
+        comList.Add("COM4");
+        comList.Add("COM5");
+        comList.Add("COM6");
+        comList.Add("COM7");
+
+        baudList.Add("2400");
+        baudList.Add("4800");
+        baudList.Add("9600");
+        baudList.Add("19200");
+        baudList.Add("38400");
+        baudList.Add("57600");
+        baudList.Add("115200");
+        baudList.Add("230400");
+        baudList.Add("460800");
+        baudList.Add("921600");
+
         SerialPortService.NotificationReceived += SerialPortService_NotificationReceived;
         SerialPortService.SerialPortStateChanged += SerialPortService_SerialPortStateChanged;
         return base.OnInitializedAsync();
@@ -45,7 +78,7 @@ public partial class Index
     {
         if (buttonText == "Connect")
         {
-            _=SerialPortService.Connect(comName, baudRate);
+            _=SerialPortService.Connect(comName, int.Parse(baudRate));
         }
         else
         {
@@ -61,15 +94,6 @@ public partial class Index
         }
     }
 
-    private void HandleSelectChangeComName(ChangeEventArgs e)
-    {
-        comName = e.Value.ToString();
-    }
-
-    private void HandleSelectChangeComBaud(ChangeEventArgs e)
-    {
-        var result = int.TryParse(e.Value.ToString(), out baudRate);
-    }
 
     /// <summary>
     /// Use of functions button.
