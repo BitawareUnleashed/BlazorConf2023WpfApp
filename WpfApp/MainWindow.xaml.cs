@@ -118,24 +118,6 @@ public partial class MainWindow : Window
         {
             try
             {
-                //byte[] h = new byte[data.Length * sizeof(char)];
-                //System.Buffer.BlockCopy(data.ToCharArray(), 0, h, 0, h.Length);
-
-                //// Try to send char by char as is
-                ////foreach (var item in data)
-                ////{
-                ////    serial.Write(h, 0, 1);
-                ////    Thread.Sleep(1);
-                ////}
-                //for (int i = 0; i < h.Length; i = i + 2)
-                //{
-                //    serial.Write(h, i, 1);
-                //    Thread.Sleep(1);
-                //}
-
-                //return;
-
-
                 // Send the binary data out the port
                 byte[] hexstring = Encoding.ASCII.GetBytes(data);
                 //There is a intermitant problem that I came across
