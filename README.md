@@ -7,4 +7,4 @@ In this repo you can find three branches: they are the three steps of the speech
 - The same application as Blazor Web Application
 - The Blazor Web application with MudBlazor controls
 
-The second repo is here: https://github.com/BitawareUnleashed/BlazorComponentsInWpf
+The second repo is here: https://github.com/BitawareUnleashed/BlazorComponentsInWpf where you'll can find the PowerPoint slides used for the speech.
