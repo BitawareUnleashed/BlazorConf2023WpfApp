@@ -32,6 +32,11 @@ public partial class MainWindow : Window
         Connect_btn.Content = "Connect";
     }
 
+    /// <summary>
+    /// Handles the Comms event of the Connect control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
     private void Connect_Comms(object sender, RoutedEventArgs e)
     {
         try
@@ -118,24 +123,6 @@ public partial class MainWindow : Window
         {
             try
             {
-                //byte[] h = new byte[data.Length * sizeof(char)];
-                //System.Buffer.BlockCopy(data.ToCharArray(), 0, h, 0, h.Length);
-
-                //// Try to send char by char as is
-                ////foreach (var item in data)
-                ////{
-                ////    serial.Write(h, 0, 1);
-                ////    Thread.Sleep(1);
-                ////}
-                //for (int i = 0; i < h.Length; i = i + 2)
-                //{
-                //    serial.Write(h, i, 1);
-                //    Thread.Sleep(1);
-                //}
-
-                //return;
-
-
                 // Send the binary data out the port
                 byte[] hexstring = Encoding.ASCII.GetBytes(data);
                 //There is a intermitant problem that I came across
